@@ -1,22 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Standard_Microsoft_Notepad
+﻿namespace Standard_Microsoft_Notepad
 {
     static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
+        [System.STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            #region Service Apllication
+            // **************************************************
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            // **************************************************
+            #endregion / Service Apllication
+
+            #region Application.Run
+            // **************************************************
+            MainForm startupForm = new MainForm();
+
+            System.Windows.Forms.Application.Run(startupForm);
+
+            if (startupForm != null)
+            {
+                if (startupForm.IsDisposed == false)
+                {
+                    startupForm.Dispose();
+                }
+
+                startupForm = null;
+            }
+            // **************************************************
+            #endregion / Application.Run
         }
     }
 }
