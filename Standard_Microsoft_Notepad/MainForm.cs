@@ -141,7 +141,10 @@ namespace Standard_Microsoft_Notepad
         #region Menu File - Exit
         private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
+            AppMessageBox msgbox =
+                new AppMessageBox();
 
+            msgbox.ApplicationExit();
         }
         #endregion /Menu File - / Exit
 
@@ -189,10 +192,21 @@ namespace Standard_Microsoft_Notepad
 
         #region Menu Help
 
-        #region Menu Help - 
-        #endregion /Menu Help - 
+        #region Menu Help - About Notepad
+        private void aboutNotepadToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            //Hide();
+
+            AboutNotepadForm f =
+                new AboutNotepadForm();
+
+            f.Show();
+        }
+        #endregion /Menu Help - / About Notepad
 
         #endregion /Menu Help
+
+
     }
 }
 
