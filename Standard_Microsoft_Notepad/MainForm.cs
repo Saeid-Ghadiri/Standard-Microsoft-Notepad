@@ -24,6 +24,11 @@ namespace Standard_Microsoft_Notepad
             PathName = string.Empty;
             Text = "Untitled - Notepad";
             mainTextBox.Text = string.Empty;
+
+            //-------Hide Menu View----------
+            mainToolStrip.Visible = false;
+            mainStatusStrip.Visible = false;
+            //-------Hide Menu View----------
         }
 
         #region Menu File
@@ -151,6 +156,8 @@ namespace Standard_Microsoft_Notepad
         private void mainTextBox_TextChanged(object sender, System.EventArgs e)
         {
             Changed = true;
+
+            StatusBarUpdate();
         }
         private void Save()
         {
@@ -207,6 +214,128 @@ namespace Standard_Microsoft_Notepad
         #endregion /Menu Help
 
 
+
+        //System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+        //ToolTip1.SetToolTip(this.Button1, "Button Info");
+
+        private void StatusBarChange()
+        {
+            if (mainStatusStrip.Visible)
+            {
+                statusBarToolStripMenuItem.Checked = false;
+                mainStatusStrip.Visible = false;
+            }
+            else
+            {
+                statusBarToolStripMenuItem.Checked = true;
+                mainStatusStrip.Visible = true;
+            }
+        }
+
+        private void StatusBarUpdate()
+        {
+            int statusBarLine = 
+                mainTextBox
+                .GetLineFromCharIndex
+                (mainTextBox.GetFirstCharIndexOfCurrentLine());
+
+            int statusBarColumn = 
+                mainTextBox
+                .SelectionStart - mainTextBox.GetFirstCharIndexOfCurrentLine();
+
+
+            toolStripStatusLabel1.Text = 
+                "Ln " + statusBarLine.ToString() + ", Col " + statusBarColumn.ToString();
+        }
+
+        private void statusBarToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            StatusBarChange();
+        }
+
+        private void ToolStripChange()
+        {
+            if (mainToolStrip.Visible)
+            {
+                toolStripToolStripMenuItem.Checked = false;
+                mainToolStrip.Visible = false;
+            }
+            else
+            {
+                toolStripToolStripMenuItem.Checked = true;
+                mainToolStrip.Visible = true;
+            }
+        }
+
+        private void toolStripToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            ToolStripChange();
+        }
+
+
+
+        private void MainForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            //AppMessageBox msgbox = 
+            //    new AppMessageBox();
+
+            //msgbox.ApplicationExit();
+        }
+
+        private void MainForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            //AppMessageBox msgbox = 
+            //    new AppMessageBox();
+
+            //msgbox.ApplicationExit();
+        }
+
+        private void viewHelpToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.google.com/");
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (mainTextBox.CanUndo)
+                mainTextBox.Undo();
+        }
+        private void cutToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (mainTextBox.SelectionLength != 0)
+                mainTextBox.Cut();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (mainTextBox.SelectionLength != 0)
+                mainTextBox.Copy();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (System.Windows.Forms.Clipboard.GetText() != "")
+            {
+                mainTextBox.Paste();
+                mainTextBox.SelectionStart = mainTextBox.TextLength;
+                mainTextBox.SelectionLength = 0;
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            mainTextBox.SelectAll();
+        }
+
+        private void timeDateToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            mainTextBox.Text += System.DateTime.Now;
+        }
     }
 }
 

@@ -56,6 +56,12 @@
       <DependentUpon>AboutNotepadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AppMessageBox.cs" />
+    <Compile Include="Find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Find.Designer.cs">
+      <DependentUpon>Find.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutNotepadForm.resx">
       <DependentUpon>AboutNotepadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Find.resx">
+      <DependentUpon>Find.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -95,6 +104,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="notepad_Lfg_icon.ico" />
+    <None Include="Resources\save-file.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\printer-with-paper.png" />
+    <None Include="Resources\printer.png" />
+    <None Include="Resources\paste-from-clipboard.png" />
+    <None Include="Resources\paste-clipboard.png" />
+    <None Include="Resources\open-folder-with-document.png" />
+    <None Include="Resources\open-folder-outline.png" />
+    <None Include="Resources\notepad1.png" />
+    <None Include="Resources\notepad.png" />
+    <None Include="Resources\new-file.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\copy-document.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
